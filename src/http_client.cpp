@@ -19,7 +19,7 @@ static size_t headerCallback(char *buffer, size_t size, size_t nitems, void *use
 	size_t realsize = size * nitems;
 	auto *cookies = static_cast<std::string *>(userp);
 	const char *set_cookie = "Set-Cookie: ";
-	if (strncmp(buffer, set_cookie, strlen(set_cookie)) == 0) {
+	if (strncasecmp(buffer, set_cookie, strlen(set_cookie)) == 0) {
 		std::string cookie(buffer + strlen(set_cookie), realsize - strlen(set_cookie));
 		size_t end = cookie.find(';');
 		if (end != std::string::npos)
