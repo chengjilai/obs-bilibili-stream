@@ -152,8 +152,8 @@ HttpResponse HttpClient::get(const std::string &url, const std::vector<std::stri
 	return response;
 }
 
-HttpResponse HttpClient::post(const std::string &url, const std::string &data,
-			      const std::vector<std::string> &headers, long timeout_ms)
+HttpResponse HttpClient::post(const std::string &url, const std::string &data, const std::vector<std::string> &headers,
+			      long timeout_ms)
 {
 	HttpResponse response;
 	response.status = 0;
@@ -209,9 +209,8 @@ void HttpClient::getAsync(const std::string &url, const std::vector<std::string>
 	queue_cv.notify_one();
 }
 
-void HttpClient::postAsync(const std::string &url, const std::string &data,
-			   const std::vector<std::string> &headers, std::function<void(HttpResponse)> callback,
-			   long timeout_ms)
+void HttpClient::postAsync(const std::string &url, const std::string &data, const std::vector<std::string> &headers,
+			   std::function<void(HttpResponse)> callback, long timeout_ms)
 {
 	{
 		std::lock_guard<std::mutex> lock(queue_mutex);
